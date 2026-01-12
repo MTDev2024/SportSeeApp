@@ -1,29 +1,28 @@
-import js from "@eslint/js";
-import globals from "globals";
-import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import { defineConfig, globalIgnores } from "eslint/config";
-
-export default defineConfig([
-  globalIgnores(["dist", "*.css", "*.config.js"]), // ← Ajout de '*.config.js'
-  {
-    files: ["**/*.{js,jsx}"],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: "latest",
-        ecmaFeatures: { jsx: true },
-        sourceType: "module",
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
+  theme: {
+    extend: {
+      colors: {
+        primary: "#FF0000",
+        secondary: "#020203",
+        "dark-gray": "#282D30",
+        "light-gray": "#FBFBFB",
+      },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
+      fontSize: {
+        hero: "48px",
+        nav: "24px",
+        "card-value": "20px",
+        body: "18px",
+        "chart-title": "15px",
+        label: "14px",
+        small: "12px",
+        tooltip: "7px",
       },
     },
-    rules: {
-      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
-    },
   },
-]);
+  plugins: [],
+};
