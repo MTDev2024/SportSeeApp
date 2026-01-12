@@ -3,9 +3,10 @@ import header_logo from "../../assets/header_logo.png";
 
 function Header() {
   return (
-    <header className="bg-secondary h-[91px] flex items-center justify-between px-8">
+    <header className="bg-secondary h-[91px] flex items-center px-8 gap-8">
       <img src={header_logo} alt="Logo SportSee" className="h-[60px]" />
-      <nav className="flex gap-40">
+
+      <nav className="flex justify-around flex-1">
         <NavLink
           to="/"
           className={({ isActive }) =>
