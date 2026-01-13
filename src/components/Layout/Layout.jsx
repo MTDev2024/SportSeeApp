@@ -6,7 +6,10 @@ function Layout({ children }) {
     <div className="relative min-h-screen">
       <Header />
       <Sidebar />
-      <main className="ml-[117px] mt-[91px] p-8">{children}</main>
+      <main className="ml-[117px]">
+        {/* ← Plus de p-8 ici */}
+        {children}
+      </main>
     </div>
   );
 }
