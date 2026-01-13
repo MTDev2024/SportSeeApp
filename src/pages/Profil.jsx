@@ -10,7 +10,7 @@ function Profil() {
         </p>
       </div>
 
-      {/* Graphiques ici plus tard */}
+      {/* Graphiques*/}
     </div>
   );
 }
