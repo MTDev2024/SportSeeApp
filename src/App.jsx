@@ -8,7 +8,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Profil />} /> {/* Temporaire*/}
-        <Route path="/profil" element={<Profil />} />
+        <Route path="/profil/:id" element={<Profil />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Layout>
