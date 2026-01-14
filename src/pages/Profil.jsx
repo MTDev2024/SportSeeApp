@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { USER_MAIN_DATA } from "../data/mockData";
+import Greeting from "../components/Greeting";
 
 /**
  * Page Profil - Affiche les données de l'utilisateur
@@ -26,15 +27,7 @@ function Profil() {
 
   return (
     <div className="p-12">
-      <div className="mb-12">
-        <h1 className="text-hero font-medium">
-          Bonjour{" "}
-          <span className="text-primary">{user.userInfos.firstName}</span>
-        </h1>
-        <p className="text-body font-normal mt-4">
-          Félicitation ! Vous avez explosé vos objectifs hier 👏
-        </p>
-      </div>
+      <Greeting firstName={user.userInfos.firstName} />
 
       {/* Graphiques */}
     </div>
