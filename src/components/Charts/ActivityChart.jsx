@@ -1,0 +1,44 @@
+import PropTypes from "prop-types";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
+
+/**
+ * Composant ActivityChart - Graphique d'activité quotidienne
+ * Affiche le poids (kg) et les calories brûlées par jour
+ *
+ * @param {Object} props
+ * @param {Array} props.data - Données d'activité (sessions)
+ */
+function ActivityChart({ data }) {
+  return (
+    <div className="bg-gray-100 p-6 rounded-lg">
+      <h2 className="text-lg font-medium mb-4">Activité quotidienne</h2>
+
+      <BarChart width={835} height={320} data={data}>
+        <CartesianGrid />
+        <XAxis
+          dataKey="day"
+          tickFormatter={(value) => Number(value.split("-")[2])}
+        />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="kilogram" fill="#282D30" />
+        <Bar dataKey="calories" fill="#E60000" />
+      </BarChart>
+    </div>
+  );
+}
+
+ActivityChart.propTypes = {
+  data: PropTypes.array.isRequired,
+};
+
+export default ActivityChart;

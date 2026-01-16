@@ -5,7 +5,7 @@ import header_logo from "../../assets/header_logo.png";
  * Composant Header - Barre de navigation principale
  */
 function Header() {
-  // Retourne les classes CSS pour les liens (avec soulignement si actif)
+  // Retourne classes CSS pour les liens (souligné si actif)
   const getNavLinkClass = (isActive) => {
     return `text-nav font-medium text-white hover:opacity-80 transition-opacity ${
       isActive ? "underline" : ""

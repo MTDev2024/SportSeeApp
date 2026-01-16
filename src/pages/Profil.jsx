@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { USER_MAIN_DATA } from "../data/mockData";
+import ActivityChart from "../components/Charts/ActivityChart";
+import { USER_ACTIVITY } from "../data/mockData";
 import Greeting from "../components/Greeting";
 import KeyDataCard from "../components/UI/KeyDataCard";
 import caloriesIcon from "../assets/energy.svg";
@@ -34,14 +36,19 @@ function Profil() {
   const proteinCount = `${user.keyData.proteinCount.toLocaleString()}g`;
   const carbohydrateCount = `${user.keyData.carbohydrateCount.toLocaleString()}g`;
   const lipidCount = `${user.keyData.lipidCount.toLocaleString()}g`;
+  const activityData = USER_ACTIVITY.find((a) => a.userId === Number(id));
 
   return (
     <div className="p-12">
       <Greeting firstName={user.userInfos.firstName} />
 
       <div className="flex gap-8">
-        {/* Zone graphiques */}
-        <div className="flex-1 text-center text-xl">Graphiques</div>
+        <div className="flex-1 text-center text-xl">
+          <div className="justify-between flex border border-red-600">
+            <ActivityChart data={activityData.sessions} />
+          </div>
+          <div className="border border-red-600">Graphiques</div>
+        </div>
 
         {/* Zone cards */}
         <div className="flex flex-col gap-6 w-64">
