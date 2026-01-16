@@ -17,6 +17,25 @@ import {
  * @param {Array} props.data - Données d'activité (sessions)
  */
 function ActivityChart({ data }) {
+  const renderLegend = () => {
+    return (
+      <div className="flex justify-end gap-8">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-[#282D30]"></div>
+          <span className="font-roboto text-label font-medium text-gray-500">
+            Poids (kg)
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-[#E60000]"></div>
+          <span className="font-roboto text-label font-medium text-gray-500">
+            Calories brûlées (kCal)
+          </span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="bg-gray-100 p-6 rounded-lg">
       <h2 className="text-lg font-medium mb-4">Activité quotidienne</h2>
@@ -29,7 +48,7 @@ function ActivityChart({ data }) {
         />
         <YAxis />
         <Tooltip />
-        <Legend />
+        <Legend content={renderLegend} verticalAlign="top" />
         <Bar dataKey="kilogram" fill="#282D30" name="Poids (kg)" />
         <Bar dataKey="calories" fill="#E60000" name="Calories brûlées (kCal)" />
       </BarChart>
