@@ -22,7 +22,7 @@ function ActivityChart({ data }) {
       <h2 className="text-lg font-medium mb-4">Activité quotidienne</h2>
 
       <BarChart width={835} height={320} data={data}>
-        <CartesianGrid />
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey="day"
           tickFormatter={(value) => Number(value.split("-")[2])}
@@ -30,8 +30,8 @@ function ActivityChart({ data }) {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="kilogram" fill="#282D30" />
-        <Bar dataKey="calories" fill="#E60000" />
+        <Bar dataKey="kilogram" fill="#282D30" name="Poids (kg)" />
+        <Bar dataKey="calories" fill="#E60000" name="Calories brûlées (kCal)" />
       </BarChart>
     </div>
   );
