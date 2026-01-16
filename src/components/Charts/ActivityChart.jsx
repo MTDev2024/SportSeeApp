@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import CustomTooltip from "./CustomTooltip";
 
 /**
  * Composant ActivityChart - Graphique d'activité quotidienne
@@ -47,7 +48,7 @@ function ActivityChart({ data }) {
           tickFormatter={(value) => Number(value.split("-")[2])}
         />
         <YAxis />
-        <Tooltip />
+        <Tooltip content={<CustomTooltip />} />
         <Legend content={renderLegend} verticalAlign="top" />
         <Bar dataKey="kilogram" fill="#282D30" name="Poids (kg)" />
         <Bar dataKey="calories" fill="#E60000" name="Calories brûlées (kCal)" />
