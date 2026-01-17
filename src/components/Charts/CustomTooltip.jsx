@@ -14,9 +14,12 @@ function CustomTooltip({ active, payload }) {
     return null;
   }
 
-  // Extraction des valeurs
-  const weight = payload[0].value;
-  const calories = payload[1].value;
+  // Extraction des valeurs en cherchant par dataKey
+  const weightData = payload.find((item) => item.dataKey === "kilogram");
+  const caloriesData = payload.find((item) => item.dataKey === "calories");
+
+  const weight = weightData ? weightData.value : 0;
+  const calories = caloriesData ? caloriesData.value : 0;
 
   return (
     <div className="bg-red-500 text-white p-2">
