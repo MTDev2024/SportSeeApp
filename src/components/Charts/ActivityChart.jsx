@@ -49,6 +49,8 @@ function ActivityChart({ data }) {
 
         <XAxis
           dataKey="day"
+          axisLine={false}
+          tickLine={false}
           tickFormatter={(value) => Number(value.split("-")[2])} // Transforme "2020-07-01" en 1
         />
 
@@ -62,6 +64,8 @@ function ActivityChart({ data }) {
           yAxisId="left"
           orientation="right"
           domain={["dataMin - 2", "dataMax + 1"]}
+          axisLine={false}
+          tickLine={false}
         />
 
         {/* 
@@ -114,7 +118,7 @@ ActivityChart.propTypes = {
       day: PropTypes.string.isRequired,
       kilogram: PropTypes.number.isRequired,
       calories: PropTypes.number.isRequired,
-    })
+    }),
   ).isRequired,
 };
 
