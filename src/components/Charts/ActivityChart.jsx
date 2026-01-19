@@ -1,5 +1,13 @@
 import PropTypes from "prop-types";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 import CustomTooltip from "./CustomTooltip";
 
 /**
@@ -38,75 +46,71 @@ function ActivityChart({ data }) {
         </div>
       </div>
 
-      <BarChart
-        width={835}
-        height={320}
-        data={data}
-        barGap={8}
-        barCategoryGap="30%"
-      >
-        <CartesianGrid strokeDasharray="3 3" />
+      <ResponsiveContainer width="100%" height={250}>
+        <BarChart data={data} barGap={8} barCategoryGap="30%">
+          <CartesianGrid strokeDasharray="3 3" />
 
-        <XAxis
-          dataKey="day"
-          axisLine={false}
-          tickLine={false}
-          tickFormatter={(value) => Number(value.split("-")[2])} // Transforme "2020-07-01" en 1
-        />
+          <XAxis
+            dataKey="day"
+            axisLine={false}
+            tickLine={false}
+            tickFormatter={(value) => Number(value.split("-")[2])} // Transforme "2020-07-01" en 1
+          />
 
-        {/* 
+          {/* 
           Axe Y gauche (visible à droite) pour les kg
           - yAxisId="left" : identifiant unique pour lier aux barres kg
           - orientation="right" : positionné à droite du graphique
           - domain : limites dynamiques (min-2 à max+1) pour s'adapter aux données
         */}
-        <YAxis
-          yAxisId="left"
-          orientation="right"
-          domain={["dataMin - 2", "dataMax + 1"]}
-          axisLine={false}
-          tickLine={false}
-        />
+          <YAxis
+            yAxisId="left"
+            orientation="right"
+            domain={["dataMin - 2", "dataMax + 1"]}
+            axisLine={false}
+            tickLine={false}
+          />
 
-        {/* 
+          {/* 
           Axe Y droit (caché) pour les calories
           - yAxisId="right" : identifiant unique pour lier aux barres calories
           - hide={true} : invisible mais utilisé pour calculer l'échelle des barres rouges
           - domain : plus large pour donner de l'espace aux barres calories
         */}
-        <YAxis
-          yAxisId="right"
-          domain={["dataMin - 50", "dataMax + 50"]}
-          hide={true}
-        />
+          <YAxis
+            yAxisId="right"
+            domain={["dataMin - 50", "dataMax + 50"]}
+            hide={true}
+          />
 
-        {/* Tooltip personnalisé au survol */}
-        <Tooltip content={<CustomTooltip />} />
+          {/* Tooltip personnalisé au survol */}
+          <Tooltip content={<CustomTooltip />} />
 
-        {/* 
+          {/* 
           Barres noires : Poids (kg)
           - yAxisId="left" : utilise l'axe Y visible à droite
         */}
-        <Bar
-          yAxisId="left"
-          dataKey="kilogram"
-          fill="#282D30"
-          name="Poids (kg)"
-          radius={[10, 10, 0, 0]}
-        />
+          <Bar
+            yAxisId="left"
+            dataKey="kilogram"
+            fill="#282D30"
+            name="Poids (kg)"
+            radius={[10, 10, 0, 0]}
+          />
 
-        {/* 
+          {/* 
           Barres rouges : Calories brûlées
           - yAxisId="right" : utilise l'axe Y caché (échelle différente)
         */}
-        <Bar
-          yAxisId="right"
-          dataKey="calories"
-          fill="#E60000"
-          name="Calories brûlées (kCal)"
-          radius={[10, 10, 0, 0]}
-        />
-      </BarChart>
+          <Bar
+            yAxisId="right"
+            dataKey="calories"
+            fill="#E60000"
+            name="Calories brûlées (kCal)"
+            radius={[10, 10, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }

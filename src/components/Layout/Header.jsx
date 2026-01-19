@@ -13,7 +13,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-secondary h-[91px] flex items-center px-8 gap-8">
+    <header className="bg-secondary h-[91px] flex items-center px-8 gap-8 fixed top-0 left-0 right-0 z-10">
       <img src={header_logo} alt="Logo SportSee" className="h-[60px]" />
 
       <nav className="flex justify-around flex-1">

@@ -5,7 +5,7 @@ import muscle from "../../assets/muscle.png";
 
 function Sidebar() {
   return (
-    <aside className="bg-secondary w-[117px] h-[calc(100vh-91px)] absolute left-0 top-[91px] flex flex-col items-center py-6">
+    <aside className="bg-secondary w-[117px] min-h-[calc(100vh-91px)] fixed left-0 top-[91px] flex flex-col items-center py-6">
       {/* Icônes centrées verticalement */}
       <nav className="flex flex-col gap-5 mt-auto mb-auto">
         <div className="bg-white h-[64px] w-[64px] rounded-md flex items-center justify-center">

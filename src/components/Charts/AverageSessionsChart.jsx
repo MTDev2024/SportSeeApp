@@ -3,7 +3,7 @@ import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 /**
  * Composant AverageSessionsChart - Durée moyenne des sessions
- * Affiche la durée moyenne des sessions par jour de la semaine
+ * Affiche la durée moyenne des sessions pour chaque jour de la semaine
  *
  * @param {Object} props
  * @param {Array} props.data - Données sessions moyennes
@@ -23,13 +23,12 @@ function AverageSessionsChart({ data }) {
 
   return (
     <div className="bg-primary rounded-lg h-full p-4">
-      {/* Titre du graphique */}
       <h3 className="font-roboto text-[15px] font-medium text-white opacity-50 text-start">
         Durée moyenne des <br /> sessions
       </h3>
 
-      {/* Graphique responsive (prend l'espace restant) */}
-      <ResponsiveContainer width="100%" height="70%">
+      {/* Graphique responsive (occupe espace restant) */}
+      <ResponsiveContainer width="100%" aspect={1}>
         <LineChart
           data={data}
           margin={{ top: 20, right: 10, bottom: 10, left: 10 }}

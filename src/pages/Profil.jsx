@@ -10,6 +10,8 @@ import glucidIcon from "../assets/apple.svg";
 import lipidIcon from "../assets/cheeseburger.svg";
 import AverageSessionsChart from "../components/Charts/AverageSessionsChart";
 import { USER_AVERAGE_SESSIONS } from "../data/mockData";
+import { USER_PERFORMANCE } from "../data/mockData";
+import PerformanceChart from "../components/Charts/PerformanceChart";
 
 /**
  * Page Profil - Affiche les données de l'utilisateur
@@ -42,36 +44,37 @@ function Profil() {
   const sessionsData = USER_AVERAGE_SESSIONS.find(
     (s) => s.userId === Number(id),
   );
+  // Ajoute cette ligne avec les autres récupérations
+  const performanceData = USER_PERFORMANCE.find((p) => p.userId === Number(id));
 
   return (
-    <div className="py-12 px-24">
+    <div className="py-12 px-6 border-2 border-green-600">
       <Greeting firstName={user.userInfos.firstName} />
 
-      {/* Container centré avec largeur max */}
-      <div className="max-w-[1100px] mt-12">
-        {/* Layout principal : graphiques à gauche, cards à droite */}
+      {/* Container centré + largeur max */}
+      <div className="max-w-[1124px] w-full mx-auto mt-12 border-2 border-orange-600">
+        {/* Layout principal */}
         <div className="flex gap-8">
           {/* Zone graphiques */}
           <div className="flex-1 flex flex-col gap-6">
-            {/* Ligne 1 : Activité quotidienne (toute la largeur) */}
+            {/* Activité quotidienne - Full W */}
             <ActivityChart data={activityData.sessions} />
 
-            {/* Ligne 2 : 3 petits graphiques carrés côte à côte */}
-            <div className="flex gap-6 h-[260px]">
+            <div className="flex gap-6 h-[260px] border-2 border-blue-600">
               <div className="flex-1">
                 <AverageSessionsChart data={sessionsData.sessions} />
               </div>
               <div className="flex-1 bg-dark-gray rounded-lg">
-                {/* TODO: PerformanceChart (radar) */}
+                <PerformanceChart data={performanceData} />
               </div>
               <div className="flex-1 bg-light-gray rounded-lg">
-                {/* TODO: ScoreChart (donut) */}
+                {/* ScoreChart */}
               </div>
             </div>
           </div>
 
-          {/* Zone cards nutritionnelles (alignée verticalement avec les graphiques) */}
-          <div className="flex flex-col justify-between w-64">
+          {/* Zone cards */}
+          <div className="flex flex-col justify-between w-64 border-2 border-yellow-950">
             <KeyDataCard
               icon={caloriesIcon}
               value={calorieCount}
