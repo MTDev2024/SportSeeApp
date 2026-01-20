@@ -9,16 +9,16 @@ import {
 
 /**
  * Composant PerformanceChart - Graphique radar des performances
- * Affiche les performances de l'utilisateur par type d'activité (cardio, énergie, endurance, force, vitesse, intensité)
+ * Affiche les performances utilisateur par type d'activité (cardio, énergie, endurance, force, vitesse, intensité)
  *
  * @param {Object} props
  * @param {Object} props.data - Données de performance contenant le dictionnaire kind et le tableau data
  */
 function PerformanceChart({ data }) {
   /**
-   * Traduit les labels anglais en français
-   * @param {string} value - Label en anglais
-   * @returns {string} Label en français
+   * Traduit labels anglais -> français
+   * @param {string} value - Label anglais
+   * @returns {string} Label français
    */
   const formatLabel = (value) => {
     if (value === "cardio") return "Cardio";
@@ -30,10 +30,20 @@ function PerformanceChart({ data }) {
     return value;
   };
 
-  // Transformation des données : conversion kind (number) en kind (string traduit)
-  const formattedData = data.data.map((point) => {
+  // Transformation des données :
+  // 1. [...data.data] → Copie du tableau (sans modifier original)
+  // 2. .reverse() → Inverse l'ordre
+  // 3. .map() → Transforme chaque point du tableau
+  const formattedData = [...data.data].reverse().map((point) => {
+    // Pour CHAQUE point du tableau :
     return {
+      // Conserve la valeur telle quelle (80, 120, 140...)
       value: point.value,
+
+      // Transforme le kind :
+      // - point.kind = nombre (1, 2, 3...)
+      // - data.kind[point.kind] traduit nombre -> mot anglais
+      // - formatLabel() traduit anglais -> français
       kind: formatLabel(data.kind[point.kind]),
     };
   });
@@ -45,6 +55,8 @@ function PerformanceChart({ data }) {
         margin={{ top: 5, right: 30, bottom: 5, left: 30 }}
       >
         <PolarGrid radialLines={false} stroke="#FFFFFF" strokeOpacity={0.2} />
+
+        {/* Labels */}
         <PolarAngleAxis
           dataKey="kind"
           tick={{
@@ -53,6 +65,7 @@ function PerformanceChart({ data }) {
             fontFamily: "Roboto",
           }}
         />
+
         <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
       </RadarChart>
     </ResponsiveContainer>
