@@ -22,7 +22,7 @@ import CustomTooltip from "./CustomTooltip";
  */
 function ActivityChart({ data }) {
   return (
-    <div className="bg-[#FBFBFB] p-6 rounded-lg">
+    <div className="bg-[#FBFBFB] p-6 rounded-lg h-full border border-green-700">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-medium">Activité quotidienne</h2>
 
@@ -46,7 +46,7 @@ function ActivityChart({ data }) {
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} barGap={8} barCategoryGap="30%">
           <CartesianGrid strokeDasharray="3 3" />
 

@@ -68,7 +68,7 @@ function ScoreChart({ score }) {
             <p className="text-[26px] font-bold text-[#282D30]">
               {scorePercent}%
             </p>
-            <p className="text-[16px] text-[#74798C] mt-1">de votre</p>
+            <p className="text-[16px] text-[#74798C]">de votre</p>
             <p className="text-[16px] text-[#74798C]">objectif</p>
           </div>
         </div>

@@ -49,26 +49,28 @@ function PerformanceChart({ data }) {
   });
 
   return (
-    <ResponsiveContainer width="100%" aspect={1}>
-      <RadarChart
-        data={formattedData}
-        margin={{ top: 5, right: 30, bottom: 5, left: 30 }}
-      >
-        <PolarGrid radialLines={false} stroke="#FFFFFF" strokeOpacity={0.2} />
+    <div className="bg-[#282D30] rounded-lg p-6 h-full">
+      <ResponsiveContainer width="100%" aspect={1}>
+        <RadarChart
+          data={formattedData}
+          margin={{ top: 5, right: 30, bottom: 5, left: 30 }}
+        >
+          <PolarGrid radialLines={false} stroke="#FFFFFF" strokeOpacity={0.2} />
 
-        {/* Labels */}
-        <PolarAngleAxis
-          dataKey="kind"
-          tick={{
-            fill: "#FFFFFF",
-            fontSize: 12,
-            fontFamily: "Roboto",
-          }}
-        />
+          {/* Labels */}
+          <PolarAngleAxis
+            dataKey="kind"
+            tick={{
+              fill: "#FFFFFF",
+              fontSize: 12,
+              fontFamily: "Roboto",
+            }}
+          />
 
-        <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
-      </RadarChart>
-    </ResponsiveContainer>
+          <Radar dataKey="value" fill="#FF0101" fillOpacity={0.7} />
+        </RadarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 

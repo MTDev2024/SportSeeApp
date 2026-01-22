@@ -12,6 +12,7 @@ import AverageSessionsChart from "../components/Charts/AverageSessionsChart";
 import { USER_AVERAGE_SESSIONS } from "../data/mockData";
 import { USER_PERFORMANCE } from "../data/mockData";
 import PerformanceChart from "../components/Charts/PerformanceChart";
+import ScoreChart from "../components/Charts/ScoreChart";
 
 /**
  * Page Profil - Affiche les données de l'utilisateur
@@ -36,6 +37,8 @@ function Profil() {
     );
   }
 
+  const userScore = user.todayScore || user.score;
+
   const calorieCount = `${user.keyData.calorieCount.toLocaleString()}kCal`;
   const proteinCount = `${user.keyData.proteinCount.toLocaleString()}g`;
   const carbohydrateCount = `${user.keyData.carbohydrateCount.toLocaleString()}g`;
@@ -44,23 +47,23 @@ function Profil() {
   const sessionsData = USER_AVERAGE_SESSIONS.find(
     (s) => s.userId === Number(id),
   );
-  // Ajoute cette ligne avec les autres récupérations
+
   const performanceData = USER_PERFORMANCE.find((p) => p.userId === Number(id));
 
   return (
-    <div className="py-12 px-6 border-2 border-green-600">
+    <div className="py-12 px-6 ">
       <Greeting firstName={user.userInfos.firstName} />
 
       {/* Container centré + largeur max */}
-      <div className="max-w-[1124px] w-full mx-auto mt-12 border-2 border-orange-600">
+      <div className="max-w-[1124px] w-full mx-auto mt-12 border-2 border-blue-500 ">
         {/* Layout principal */}
-        <div className="flex gap-8">
+        <div className="flex gap-8 border-4 border-yellow-600">
           {/* Zone graphiques */}
           <div className="flex-1 flex flex-col gap-6">
             {/* Activité quotidienne - Full W */}
             <ActivityChart data={activityData.sessions} />
 
-            <div className="flex gap-6 h-[260px] border-2 border-blue-600">
+            <div className="flex gap-6 h-[260px] border border-orange-500">
               <div className="flex-1">
                 <AverageSessionsChart data={sessionsData.sessions} />
               </div>
@@ -68,13 +71,13 @@ function Profil() {
                 <PerformanceChart data={performanceData} />
               </div>
               <div className="flex-1 bg-light-gray rounded-lg">
-                {/* ScoreChart */}
+                <ScoreChart score={userScore} />
               </div>
             </div>
           </div>
 
           {/* Zone cards */}
-          <div className="flex flex-col justify-between w-64 border-2 border-yellow-950">
+          <div className="flex flex-col gap-9 w-64 border border-red-400">
             <KeyDataCard
               icon={caloriesIcon}
               value={calorieCount}

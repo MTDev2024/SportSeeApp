@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 function KeyDataCard({ icon, value, label, iconBg }) {
   return (
-    <div className="flex items-center gap-6 bg-light-gray p-8 rounded-md">
+    <div className="flex items-center gap-6 bg-light-gray p-8 rounded-md border border-red-600">
       <div
         className={`w-16 h-16 flex items-center justify-center rounded-md ${iconBg}`}
       >
