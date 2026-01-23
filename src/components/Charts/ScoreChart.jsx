@@ -50,8 +50,8 @@ function ScoreChart({ score }) {
               cx="50%"
               cy="50%"
               data={data} // 2 cercles
-              innerRadius="60%" // Début du cercle
-              outerRadius="100%" // Fin du cercle
+              innerRadius="60%" // Début cercle
+              outerRadius="100%" // Fin cercle
               startAngle={90}
               endAngle={450} // Tour complet (450 - 90 = 360°)
             >
