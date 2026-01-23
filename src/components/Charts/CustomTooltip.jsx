@@ -22,7 +22,7 @@ function CustomTooltip({ active, payload }) {
   const calories = caloriesData ? caloriesData.value : 0;
 
   return (
-    <div className="bg-red-500 text-white p-2">
+    <div className="bg-red-500 text-white p-2" role="tooltip">
       <p className="font-roboto text-tooltip font-medium">{weight}kg</p>
       <p className="font-roboto text-tooltip font-medium">{calories}kCal</p>
     </div>

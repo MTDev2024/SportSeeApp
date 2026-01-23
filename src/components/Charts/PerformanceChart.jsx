@@ -49,11 +49,26 @@ function PerformanceChart({ data }) {
   });
 
   return (
-    <div className="bg-[#282D30] rounded-lg p-6 h-full">
+    <div
+      className="bg-[#282D30] rounded-lg p-6 h-full"
+      role="figure"
+      aria-labelledby="performance-chart-title"
+      aria-describedby="performance-chart-desc"
+    >
+      <p id="performance-chart-desc" className="sr-only">
+        Graphique radar représentant les performances dans 6 catégories :
+        intensité, vitesse, force, endurance, énergie et cardio.
+      </p>
+
+      <h3 id="performance-chart-title" className="sr-only">
+        Graphique de performance
+      </h3>
+
       <ResponsiveContainer width="100%" aspect={1}>
         <RadarChart
           data={formattedData}
           margin={{ top: 5, right: 30, bottom: 5, left: 30 }}
+          accessibilityLayer
         >
           <PolarGrid radialLines={false} stroke="#FFFFFF" strokeOpacity={0.2} />
 

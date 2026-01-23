@@ -22,15 +22,31 @@ import CustomTooltip from "./CustomTooltip";
  */
 function ActivityChart({ data }) {
   return (
-    <div className="bg-[#FBFBFB] p-6 rounded-lg h-full border border-green-700">
+    <div
+      className="bg-[#FBFBFB] p-6 rounded-lg h-full border border-green-700"
+      role="figure"
+      aria-labelledby="activity-chart-title"
+      aria-describedby="activity-chart-desc"
+    >
+      {/* Accessibilité : description pour lecteurs d'écran */}
+      <p id="activity-chart-desc" className="sr-only">
+        Graphique en barres affichant le poids en kilogrammes et les calories
+        brûlées sur 7 jours.
+      </p>
+
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-medium">Activité quotidienne</h2>
+        <h2 id="activity-chart-title" className="text-lg font-medium">
+          Activité quotidienne
+        </h2>
 
         {/* Légende personnalisée */}
-        <div className="flex gap-8">
+        <div className="flex gap-8" aria-label="Légende du graphique">
           {/* Élément légende : Poids (kg) */}
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#282D30]"></div>
+            <div
+              className="w-2 h-2 rounded-full bg-[#282D30]"
+              aria-hidden="true"
+            ></div>
             <span className="font-roboto text-label font-medium text-gray-500">
               Poids (kg)
             </span>
@@ -38,7 +54,10 @@ function ActivityChart({ data }) {
 
           {/* Élément légende : Calories brûlées */}
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#E60000]"></div>
+            <div
+              className="w-2 h-2 rounded-full bg-[#E60000]"
+              aria-hidden="true"
+            ></div>
             <span className="font-roboto text-label font-medium text-gray-500">
               Calories brûlées (kCal)
             </span>
@@ -47,7 +66,12 @@ function ActivityChart({ data }) {
       </div>
 
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} barGap={8} barCategoryGap="30%">
+        <BarChart
+          data={data}
+          barGap={8}
+          barCategoryGap="30%"
+          accessibilityLayer
+        >
           <CartesianGrid strokeDasharray="3 3" />
 
           <XAxis
@@ -83,7 +107,6 @@ function ActivityChart({ data }) {
             hide={true}
           />
 
-          {/* Tooltip personnalisé au survol */}
           <Tooltip content={<CustomTooltip />} />
 
           {/* 

@@ -50,15 +50,15 @@ function ScoreChart({ score }) {
               cx="50%"
               cy="50%"
               data={data} // 2 cercles
-              innerRadius="60%" // Début du cercle (creux au centre)
-              outerRadius="100%" // Fin du cercle (épaisseur = 10%)
+              innerRadius="60%" // Début du cercle
+              outerRadius="100%" // Fin du cercle
               startAngle={90}
               endAngle={450} // Tour complet (450 - 90 = 360°)
             >
               {/* 
-                RadialBar dessine les 2 barres :
-                - La 1ère (Fond blanc) fera un cercle complet
-                - La 2ème (Score rouge) fera un arc partiel en fonction du score
+                RadialBar dessine 2 barres :
+                - 1ère (Fond blanc) -> cercle complet
+                - 2ème (Score rouge) -> arc partiel selon score
               */}
               <RadialBar dataKey="value" cornerRadius={10} />
             </RadialBarChart>
