@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { USER_MAIN_DATA } from "../data/mockData";
 import ActivityChart from "../components/Charts/ActivityChart";
 import { USER_ACTIVITY } from "../data/mockData";
 import Greeting from "../components/Greeting";
@@ -13,6 +12,8 @@ import { USER_AVERAGE_SESSIONS } from "../data/mockData";
 import { USER_PERFORMANCE } from "../data/mockData";
 import PerformanceChart from "../components/Charts/PerformanceChart";
 import ScoreChart from "../components/Charts/ScoreChart";
+import { useState, useEffect } from "react";
+import { getUserData } from "../services/api";
 
 /**
  * Page Profil - Affiche les données de l'utilisateur
@@ -23,19 +24,25 @@ import ScoreChart from "../components/Charts/ScoreChart";
 function Profil() {
   // Récupération ID depuis URL
   const { id } = useParams();
-  // Recherche utilisateur correspondant (conversion string → number)
-  const user = USER_MAIN_DATA.find((u) => u.id === Number(id));
+  const [user, setUser] = useState(null); // 1. Données
+  const [loading, setLoading] = useState(true); // 2. État loading
+  const [error, setError] = useState(null); // 3. Message d'erreur
 
-  if (!user) {
-    return (
-      <div className="p-12">
-        <h1 className="text-hero font-medium text-primary">
-          Utilisateur introuvable
-        </h1>
-        <p className="text-body">L'utilisateur avec l'ID {id} n'existe pas.</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    getUserData(Number(id))
+      .then((data) => {
+        setUser(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) return <div>Chargement...</div>;
+  if (error) return <div>Erreur : {error}</div>;
+  if (!user) return <div>Pas de données</div>;
 
   const userScore = user.todayScore || user.score;
 
