@@ -1,11 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import header_logo from "../../assets/header_logo.png";
 
 /**
  * Composant Header - Barre de navigation principale
+ * (Le lien "Profil" s'adapte automatiquement à l'utilisateur actuel dans l'URL)
  */
 function Header() {
-  // Retourne classes CSS pour les liens (souligné si actif)
+  const location = useLocation();
+
+  // Extrait l'ID de l'utilisateur depuis l'URL actuelle
+  // Si /profil/12 → currentId = "12"
+  // Si /profil/18 → currentId = "18"
+  // défaut = "12" (Karl)
+  const currentId = location.pathname.includes("/profil/")
+    ? location.pathname.split("/profil/")[1]
+    : "12";
+
+  // Classes CSS pour les liens
   const getNavLinkClass = (isActive) => {
     return `text-nav font-medium text-white hover:opacity-80 transition-opacity ${
       isActive ? "underline" : ""
@@ -20,12 +31,15 @@ function Header() {
         <NavLink to="/" className={({ isActive }) => getNavLinkClass(isActive)}>
           Accueil
         </NavLink>
+
+        {/* Lien Profil dynamique : utilise l'ID de l'URL actuelle */}
         <NavLink
-          to="/profil"
+          to={`/profil/${currentId}`}
           className={({ isActive }) => getNavLinkClass(isActive)}
         >
           Profil
         </NavLink>
+
         <NavLink
           to="/reglage"
           className={({ isActive }) => getNavLinkClass(isActive)}

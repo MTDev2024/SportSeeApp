@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
+import Home from "./pages/Home"; // ← Ajoute cet import
 import Profil from "./pages/Profil";
 import Error from "./pages/Error";
 
@@ -7,7 +8,7 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Profil />} /> {/* Temporaire*/}
+        <Route path="/" element={<Home />} /> {/* ← Page d'accueil */}
         <Route path="/profil/:id" element={<Profil />} />
         <Route path="*" element={<Error />} />
       </Routes>

@@ -41,7 +41,7 @@ function ActivityChart({ data }) {
 
         {/* Légende personnalisée */}
         <div className="flex gap-8" aria-label="Légende du graphique">
-          {/* Élément légende : Poids (kg) */}
+          {/* Poids (kg) */}
           <div className="flex items-center gap-2">
             <div
               className="w-2 h-2 rounded-full bg-[#282D30]"
@@ -52,7 +52,7 @@ function ActivityChart({ data }) {
             </span>
           </div>
 
-          {/* Élément légende : Calories brûlées */}
+          {/* Calories brûlées */}
           <div className="flex items-center gap-2">
             <div
               className="w-2 h-2 rounded-full bg-[#E60000]"
