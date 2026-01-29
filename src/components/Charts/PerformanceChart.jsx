@@ -20,6 +20,8 @@ function PerformanceChart({ data }) {
    * @param {string} value - Label anglais
    * @returns {string} Label français
    */
+  if (!data) return null;
+
   const formatLabel = (value) => {
     if (value === "cardio") return "Cardio";
     if (value === "energy") return "Energie";

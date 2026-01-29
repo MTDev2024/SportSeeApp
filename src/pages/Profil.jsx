@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import ActivityChart from "../components/Charts/ActivityChart";
-import { USER_ACTIVITY } from "../data/mockData";
+// import { USER_ACTIVITY } from "../data/mockData";
 import Greeting from "../components/Greeting";
 import KeyDataCard from "../components/UI/KeyDataCard";
 import caloriesIcon from "../assets/energy.svg";
@@ -8,12 +8,17 @@ import proteinIcon from "../assets/chicken.svg";
 import glucidIcon from "../assets/apple.svg";
 import lipidIcon from "../assets/cheeseburger.svg";
 import AverageSessionsChart from "../components/Charts/AverageSessionsChart";
-import { USER_AVERAGE_SESSIONS } from "../data/mockData";
-import { USER_PERFORMANCE } from "../data/mockData";
+// import { USER_AVERAGE_SESSIONS } from "../data/mockData";
+// import { USER_PERFORMANCE } from "../data/mockData";
 import PerformanceChart from "../components/Charts/PerformanceChart";
 import ScoreChart from "../components/Charts/ScoreChart";
 import { useState, useEffect } from "react";
-import { getUserData } from "../services/api";
+import {
+  getUserAverageSessions,
+  getUserData,
+  getUserActivity,
+  getUserPerformance,
+} from "../services/api";
 
 /**
  * Page Profil - Affiche les données de l'utilisateur
@@ -27,6 +32,9 @@ function Profil() {
   const [user, setUser] = useState(null); // 1. Données
   const [loading, setLoading] = useState(true); // 2. État loading
   const [error, setError] = useState(null); // 3. Message d'erreur
+  const [activityData, setActivityData] = useState(null);
+  const [averageSessions, setAverageSessions] = useState(null);
+  const [performanceData, setPerformanceData] = useState(null);
 
   useEffect(() => {
     getUserData(Number(id))
@@ -38,6 +46,16 @@ function Profil() {
         setError(err.message);
         setLoading(false);
       });
+
+    getUserActivity(Number(id))
+      .then((data) => setActivityData(data))
+      .catch((err) => setError(err.message));
+    getUserAverageSessions(Number(id))
+      .then((data) => setAverageSessions(data))
+      .catch((err) => setError(err.message));
+    getUserPerformance(Number(id))
+      .then((data) => setPerformanceData(data))
+      .catch((err) => setError(err.message));
   }, [id]);
 
   if (loading) return <div>Chargement...</div>;
@@ -50,12 +68,12 @@ function Profil() {
   const proteinCount = `${user.keyData.proteinCount.toLocaleString()}g`;
   const carbohydrateCount = `${user.keyData.carbohydrateCount.toLocaleString()}g`;
   const lipidCount = `${user.keyData.lipidCount.toLocaleString()}g`;
-  const activityData = USER_ACTIVITY.find((a) => a.userId === Number(id));
-  const sessionsData = USER_AVERAGE_SESSIONS.find(
-    (s) => s.userId === Number(id),
-  );
+  // const activityData = USER_ACTIVITY.find((a) => a.userId === Number(id));
+  // const sessionsData = USER_AVERAGE_SESSIONS.find(
+  //   (s) => s.userId === Number(id),
+  // );
 
-  const performanceData = USER_PERFORMANCE.find((p) => p.userId === Number(id));
+  // const performanceData = USER_PERFORMANCE.find((p) => p.userId === Number(id));
 
   return (
     <div className="py-12 px-6 ">
@@ -68,11 +86,11 @@ function Profil() {
           {/* Zone graphiques */}
           <div className="flex-1 flex flex-col gap-6">
             {/* Activité quotidienne - Full W */}
-            <ActivityChart data={activityData.sessions} />
+            <ActivityChart data={activityData?.sessions} />
 
             <div className="flex gap-6 h-[260px] border border-orange-500">
               <div className="flex-1">
-                <AverageSessionsChart data={sessionsData.sessions} />
+                <AverageSessionsChart data={averageSessions?.sessions} />
               </div>
               <div className="flex-1 bg-dark-gray rounded-lg">
                 <PerformanceChart data={performanceData} />
