@@ -69,40 +69,66 @@ function Profil() {
   const carbohydrateCount = `${user.keyData.carbohydrateCount.toLocaleString()}g`;
   const lipidCount = `${user.keyData.lipidCount.toLocaleString()}g`;
   // const activityData = USER_ACTIVITY.find((a) => a.userId === Number(id));
-  // const sessionsData = USER_AVERAGE_SESSIONS.find(
-  //   (s) => s.userId === Number(id),
-  // );
-
+  // const sessionsData = USER_AVERAGE_SESSIONS.find((s) => s.userId === Number(id),);
   // const performanceData = USER_PERFORMANCE.find((p) => p.userId === Number(id));
 
   return (
-    <div className="py-12 px-6 ">
+    <div className="py-12 px-6">
       <Greeting firstName={user.userInfos.firstName} />
 
       {/* Container centré + largeur max */}
-      <div className="max-w-[1124px] w-full mx-auto mt-12 border-2 border-blue-500 ">
+      <div className="max-w-[1125px] w-full mx-auto mt-12 ">
+        {/* KeyDataCards - En grille 2x2 sur petit écran uniquement */}
+        <div className="grid grid-cols-2 gap-4 lg:hidden mb-6">
+          <KeyDataCard
+            icon={caloriesIcon}
+            value={calorieCount}
+            label="Calories"
+            iconBg="bg-icon-calories"
+          />
+          <KeyDataCard
+            icon={proteinIcon}
+            value={proteinCount}
+            label="Protéines"
+            iconBg="bg-icon-protein"
+          />
+          <KeyDataCard
+            icon={glucidIcon}
+            value={carbohydrateCount}
+            label="Glucides"
+            iconBg="bg-icon-carbs"
+          />
+          <KeyDataCard
+            icon={lipidIcon}
+            value={lipidCount}
+            label="Lipides"
+            iconBg="bg-icon-lipids"
+          />
+        </div>
+
         {/* Layout principal */}
-        <div className="flex gap-8 border-4 border-yellow-600">
+        <div className="flex gap-8 border border-blue-600">
           {/* Zone graphiques */}
-          <div className="flex-1 flex flex-col gap-6">
-            {/* Activité quotidienne - Full W */}
+          <div className="flex-1 flex flex-col gap-6 border border-green-600">
+            {/* Activité quotidienne */}
             <ActivityChart data={activityData?.sessions} />
 
-            <div className="flex gap-6 h-[260px] border border-orange-500">
-              <div className="flex-1">
+            {/* 3 graphiques du bas */}
+            <div className="flex gap-6 px-2">
+              <div className="flex-1 aspect-square">
                 <AverageSessionsChart data={averageSessions?.sessions} />
               </div>
-              <div className="flex-1 bg-dark-gray rounded-lg">
+              <div className="flex-1 aspect-square bg-dark-gray rounded-lg">
                 <PerformanceChart data={performanceData} />
               </div>
-              <div className="flex-1 bg-light-gray rounded-lg">
+              <div className="flex-1 aspect-square bg-light-gray rounded-lg">
                 <ScoreChart score={userScore} />
               </div>
             </div>
           </div>
 
-          {/* Zone cards */}
-          <div className="flex flex-col gap-9 w-64 border border-red-400">
+          {/* Zone cards - Colonne sur grand écran uniquement */}
+          <div className="hidden lg:flex flex-col gap-9 w-64">
             <KeyDataCard
               icon={caloriesIcon}
               value={calorieCount}

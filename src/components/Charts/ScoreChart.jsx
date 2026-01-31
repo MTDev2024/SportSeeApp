@@ -40,7 +40,7 @@ function ScoreChart({ score }) {
   const scorePercent = Math.round(score * 100);
 
   return (
-    <div className="bg-[#FBFBFB] rounded-lg p-6 h-full flex flex-col shadow-lg shadow-black/30">
+    <div className="bg-[#FBFBFB] rounded-lg p-3 h-full flex flex-col shadow-lg shadow-black/30">
       <h3 className="text-[15px] font-medium mb-4">Score</h3>
 
       <div className="flex-1 flex items-center justify-center">
@@ -65,11 +65,11 @@ function ScoreChart({ score }) {
           </ResponsiveContainer>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <p className="text-[26px] font-bold text-[#282D30]">
+            <p className="text-lg xl:text-[26px] font-bold text-[#282D30]">
               {scorePercent}%
             </p>
-            <p className="text-[16px] text-[#74798C]">de votre</p>
-            <p className="text-[16px] text-[#74798C]">objectif</p>
+            <p className="text-xs xl:text-[16px] text-[#74798C]">de votre</p>
+            <p className="text-xs xl:text-[16px] text-[#74798C]">objectif</p>
           </div>
         </div>
       </div>

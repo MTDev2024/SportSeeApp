@@ -23,7 +23,7 @@ import CustomTooltip from "./CustomTooltip";
 function ActivityChart({ data }) {
   return (
     <div
-      className="bg-[#FBFBFB] p-6 rounded-lg h-full border border-green-700"
+      className="bg-[#FBFBFB] p-6 rounded-lg h-[330px]"
       role="figure"
       aria-labelledby="activity-chart-title"
       aria-describedby="activity-chart-desc"

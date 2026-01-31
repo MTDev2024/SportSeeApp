@@ -52,7 +52,7 @@ function PerformanceChart({ data }) {
 
   return (
     <div
-      className="bg-[#282D30] rounded-lg p-6 h-full"
+      className="bg-[#282D30] rounded-lg p-1 h-full"
       role="figure"
       aria-labelledby="performance-chart-title"
       aria-describedby="performance-chart-desc"

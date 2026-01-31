@@ -13,6 +13,9 @@ export default {
         "icon-carbs": "#F9CE2333",
         "icon-lipids": "#FD51811A",
       },
+      screens: {
+        lg: "1030px",
+      },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
