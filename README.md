@@ -27,7 +27,7 @@ Le projet met l'accent sur la visualisation de données avec Recharts et l'inté
 
 
 ---
-
+# Aperçu
 
 ### Page d'accueil
 ![Page d'accueil](./screenshots/Home.png)
