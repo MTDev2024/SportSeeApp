@@ -11,16 +11,6 @@
 SportSee est une application React qui affiche les données sportives d'un utilisateur via des graphiques interactifs. 
 Le projet met l'accent sur la visualisation de données avec Recharts et l'intégration d'une API REST.
 
-### Page d'accueil
-![Page d'accueil](./screenshots/Home.png)
-
-### Dashboard utilisateur
-![Dashboard Profil](./screenshots/Profil.png)
-
-### Page 404
-![Page 404](./screenshots/404.png)
-
----
 
 ## 📋 Table des matières
 
@@ -35,6 +25,18 @@ Le projet met l'accent sur la visualisation de données avec Recharts et l'inté
 - [Graphiques implémentés](#graphiques-implémentés)
 - [Documentation](#documentation)
 
+
+---
+
+
+### Page d'accueil
+![Page d'accueil](./screenshots/Home.png)
+
+### Dashboard utilisateur
+![Dashboard Profil](./screenshots/Profil.png)
+
+### Page 404
+![Page 404](./screenshots/404.png)
 
 ---
 
