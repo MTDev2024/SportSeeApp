@@ -10,7 +10,7 @@ import Sidebar from "./Sidebar";
 
 function Layout({ children }) {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative">
       <Header />
       <Sidebar />
       <main className="ml-[117px] mt-[91px]">{children}</main>

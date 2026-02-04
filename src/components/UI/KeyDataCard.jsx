@@ -20,7 +20,9 @@ function KeyDataCard({ icon, value, label, iconBg }) {
       </div>
 
       <div>
-        <p className="text-card-value font-bold">{value}</p>
+        <p className="text-card-value font-bold" role="text">
+          {value}
+        </p>
         <p className="text-label text-gray-500">{label}</p>
       </div>
     </div>

@@ -58,9 +58,9 @@ function PerformanceChart({ data }) {
         intensité, vitesse, force, endurance, énergie et cardio.
       </p>
 
-      <h3 id="performance-chart-title" className="sr-only">
+      <h2 id="performance-chart-title" className="sr-only">
         Graphique de performance
-      </h3>
+      </h2>
 
       <ResponsiveContainer width="100%" aspect={1}>
         <RadarChart

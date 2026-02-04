@@ -48,8 +48,7 @@ function ScoreChart({ score }) {
 
   return (
     <div className="bg-[#FBFBFB] rounded-lg p-3 h-full flex flex-col shadow-lg shadow-black/30">
-      <h3 className="text-[15px] font-medium mb-4">Score</h3>
-
+      <h2 className="text-[15px] font-medium mb-4">Score</h2>
       <div className="flex-1 flex items-center justify-center">
         <div className="relative w-full h-full">
           <ResponsiveContainer width="100%" height="100%">

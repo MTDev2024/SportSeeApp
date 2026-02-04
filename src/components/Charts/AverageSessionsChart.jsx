@@ -37,9 +37,9 @@ function AverageSessionsChart({ data }) {
 
   return (
     <div className="bg-primary rounded-lg h-full p-4 overflow-hidden">
-      <h3 className="font-roboto text-[15px] font-medium text-white opacity-50 text-start">
+      <h2 className="font-roboto text-[15px] font-medium text-white opacity-50 text-start">
         Durée moyenne des <br /> sessions
-      </h3>
+      </h2>
 
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
