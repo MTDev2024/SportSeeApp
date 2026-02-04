@@ -1,14 +1,12 @@
 import PropTypes from "prop-types";
 
 /**
- * Composant KeyDataCard - Carte affichant donnée nutritionnelle
- * Affiche icône colorée + valeur + label
- *
+ * Carte affichant une donnée nutritionnelle clé
  * @param {Object} props
- * @param {string} props.icon
- * @param {string} props.value
- * @param {string} props.label
- * @param {string} props.iconBg - Classe Tailwind couleur de fond icône
+ * @param {string} props.icon - Chemin vers l'icône
+ * @param {string} props.value - Valeur formatée (ex: "1,930kCal")
+ * @param {string} props.label - Label descriptif (ex: "Calories")
+ * @param {string} props.iconBg - Classe Tailwind pour le fond de l'icône
  */
 
 function KeyDataCard({ icon, value, label, iconBg }) {

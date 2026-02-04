@@ -1,12 +1,11 @@
 import PropTypes from "prop-types";
 
 /**
- * Composant Greeting - Message de bienvenue personnalisé
- * Affiche message + prénom de l'utilisateur
- *
+ * Message de bienvenue personnalisé avec le prénom de l'utilisateur
  * @param {Object} props
- * @param {string} props.firstName
+ * @param {string} props.firstName - Prénom de l'utilisateur
  */
+
 function Greeting({ firstName }) {
   return (
     <div className="mb-12">

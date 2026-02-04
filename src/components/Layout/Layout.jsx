@@ -3,9 +3,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 /**
- * Composant Layout - Structure globale de l'application
- * Contient le Header, la Sidebar et la zone de contenu principale
- *
+ * Structure globale de l'application avec header, sidebar et contenu principal
  * @param {Object} props
  * @param {React.ReactNode} props.children - Contenu de la page à afficher
  */
@@ -20,7 +18,6 @@ function Layout({ children }) {
   );
 }
 
-// Validation des props
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };

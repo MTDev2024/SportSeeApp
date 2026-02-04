@@ -2,9 +2,10 @@ import { NavLink, useLocation } from "react-router-dom";
 import header_logo from "../../assets/header_logo.png";
 
 /**
- * Composant Header - Barre de navigation principale
- * (Le lien "Profil" s'adapte automatiquement à l'utilisateur actuel dans l'URL)
+ * Barre de navigation principale avec logo et liens
+ * Le lien "Profil" s'adapte automatiquement à l'utilisateur actuel dans l'URL
  */
+
 function Header() {
   const location = useLocation();
 

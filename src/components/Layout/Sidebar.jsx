@@ -4,8 +4,9 @@ import cycle from "../../assets/cycle.png";
 import muscle from "../../assets/muscle.png";
 
 /**
- * Composant Sidebar - Barre latérale avec icônes d'activités
+ * Barre latérale avec icônes d'activités sportives et copyright
  */
+
 function Sidebar() {
   return (
     <aside
