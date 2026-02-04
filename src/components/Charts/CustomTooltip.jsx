@@ -1,20 +1,18 @@
 import PropTypes from "prop-types";
 
 /**
- * Composant CustomTooltip - Tooltip personnalisé pour les graphiques
- * Affiche les données au survol d'un point du graphique
- *
+ * Tooltip personnalisé pour le graphique d'activité
  * @param {Object} props
- * @param {boolean} props.active - Indique si le tooltip actif
+ * @param {boolean} props.active - Tooltip actif au survol
  * @param {Array} props.payload - Données du point survolé
  */
 function CustomTooltip({ active, payload }) {
-  // Si non actif ou 0 données -> ne rien afficher
+  // Si non actif ou pas de données -> ne rien afficher
   if (!active || !payload || payload.length === 0) {
     return null;
   }
 
-  // Extraction des valeurs en cherchant par dataKey
+  // Extraction des valeurs par dataKey
   const weightData = payload.find((item) => item.dataKey === "kilogram");
   const caloriesData = payload.find((item) => item.dataKey === "calories");
 
@@ -31,7 +29,13 @@ function CustomTooltip({ active, payload }) {
 
 CustomTooltip.propTypes = {
   active: PropTypes.bool,
-  payload: PropTypes.array,
+  payload: PropTypes.arrayOf(
+    PropTypes.shape({
+      dataKey: PropTypes.string,
+      value: PropTypes.number,
+      name: PropTypes.string,
+    }),
+  ),
 };
 
 export default CustomTooltip;

@@ -2,13 +2,20 @@ import PropTypes from "prop-types";
 import { ResponsiveContainer, RadialBarChart, RadialBar } from "recharts";
 
 /**
- * Composant ScoreChart - Jauge circulaire du score
- * Affiche le pourcentage de l'objectif quotidien atteint
- *
+ * Graphique circulaire du score journalier
  * @param {Object} props
  * @param {number} props.score - Score entre 0 et 1 (ex: 0.12 = 12%)
  */
 function ScoreChart({ score }) {
+  // Gestion du cas pas de données ( 0 valide)
+  if (score === undefined || score === null) {
+    return (
+      <div className="bg-[#FBFBFB] rounded-lg h-full flex items-center justify-center">
+        <p className="text-gray-400">Chargement du score...</p>
+      </div>
+    );
+  }
+
   /**
    * Prépare les données pour RadialBarChart
    * 2 cercles superposés :
@@ -78,7 +85,7 @@ function ScoreChart({ score }) {
 }
 
 ScoreChart.propTypes = {
-  score: PropTypes.number.isRequired,
+  score: PropTypes.number,
 };
 
 export default ScoreChart;

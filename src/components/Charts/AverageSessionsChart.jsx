@@ -7,16 +7,22 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-// ↑ Ajouter YAxis
 
 /**
- * Composant AverageSessionsChart - Durée moyenne des sessions
- * Affiche la durée moyenne des sessions pour chaque jour de la semaine
- *
+ * Graphique de durée moyenne des sessions par jour
  * @param {Object} props
- * @param {Array} props.data - Données sessions moyennes
+ * @param {Array} props.data - Sessions avec durée par jour
  */
 function AverageSessionsChart({ data }) {
+  // Gestion du cas pas de data
+  if (!data || data.length === 0) {
+    return (
+      <div className="bg-primary rounded-lg h-full flex items-center justify-center">
+        <p className="text-white opacity-50">Chargement des sessions...</p>
+      </div>
+    );
+  }
+
   const renderTooltip = ({ active, payload }) => {
     if (!active || !payload || payload.length === 0) {
       return null;
@@ -57,7 +63,6 @@ function AverageSessionsChart({ data }) {
             }}
           />
 
-          {/* YAxis caché avec domain pour limiter la courbe */}
           <YAxis domain={["dataMin - 10", "dataMax + 10"]} hide={true} />
 
           <Tooltip content={renderTooltip} cursor={false} />
@@ -77,7 +82,12 @@ function AverageSessionsChart({ data }) {
 }
 
 AverageSessionsChart.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.number.isRequired,
+      sessionLength: PropTypes.number.isRequired,
+    }),
+  ),
 };
 
 export default AverageSessionsChart;

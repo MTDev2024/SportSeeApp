@@ -57,17 +57,17 @@ Le projet met l'accent sur la visualisation de données avec Recharts et l'inté
 ## Technologies utilisées
 
 ### Frontend
-- **React 18.3.1** - Bibliothèque JavaScript pour l'interface utilisateur
-- **Vite 6.0.3** - Build tool et dev server rapide
-- **Recharts 2.15.0** - Bibliothèque de graphiques pour React
-- **React Router 7.1.1** - Gestion de la navigation
-- **Tailwind CSS 3.4.17** - Framework CSS utility-first
-- **PropTypes 15.8.1** - Validation des props des composants
+- **React 18.3.1** - Interface utilisateur
+- **Vite 6.0.3** - Build tool / Dev server
+- **Recharts 2.15.0** - Graphiques pour React
+- **React Router 7.1.1** - Navigation
+- **Tailwind CSS 3.4.17** - CSS utility-first
+- **PropTypes 15.8.1** - Validation des props
 
 ### Outils de développement
-- **ESLint** - Linting du code JavaScript
-- **PostCSS** - Transformation CSS
-- **Autoprefixer** - Ajout automatique des préfixes CSS
+- **ESLint**
+- **PostCSS**
+- **Autoprefixer**
 
 ---
 
@@ -154,7 +154,7 @@ SportSee/
 
 ---
 
-## 🔌 API Backend
+## API Backend
 
 Le projet utilise un backend Node.js fourni par OpenClassrooms.
 

@@ -8,20 +8,25 @@ import {
 } from "recharts";
 
 /**
- * Composant PerformanceChart - Graphique radar des performances
- * Affiche les performances utilisateur par type d'activité (cardio, énergie, endurance, force, vitesse, intensité)
- *
+ * Radar chart des performances par type d'activité
  * @param {Object} props
- * @param {Object} props.data - Données de performance contenant le dictionnaire kind et le tableau data
+ * @param {Object} props.data - Données de performance avec kind et valeurs
  */
 function PerformanceChart({ data }) {
+  // Gestion du cas pas de données
+  if (!data || !data.data || data.data.length === 0) {
+    return (
+      <div className="bg-[#282D30] rounded-lg h-full flex items-center justify-center">
+        <p className="text-white opacity-50">Chargement des performances...</p>
+      </div>
+    );
+  }
+
   /**
-   * Traduit labels anglais -> français
+   * Traduit les labels anglais en français
    * @param {string} value - Label anglais
    * @returns {string} Label français
    */
-  if (!data) return null;
-
   const formatLabel = (value) => {
     if (value === "cardio") return "Cardio";
     if (value === "energy") return "Energie";
@@ -33,22 +38,13 @@ function PerformanceChart({ data }) {
   };
 
   // Transformation des données :
-  // 1. [...data.data] → Copie du tableau (sans modifier original)
+  // 1. [...data.data] → Copie du tableau (sans modifier l'original)
   // 2. .reverse() → Inverse l'ordre
-  // 3. .map() → Transforme chaque point du tableau
-  const formattedData = [...data.data].reverse().map((point) => {
-    // Pour CHAQUE point du tableau :
-    return {
-      // Conserve la valeur telle quelle (80, 120, 140...)
-      value: point.value,
-
-      // Transforme le kind :
-      // - point.kind = nombre (1, 2, 3...)
-      // - data.kind[point.kind] traduit nombre -> mot anglais
-      // - formatLabel() traduit anglais -> français
-      kind: formatLabel(data.kind[point.kind]),
-    };
-  });
+  // 3. .map() → Transforme chaque point
+  const formattedData = [...data.data].reverse().map((point) => ({
+    value: point.value,
+    kind: formatLabel(data.kind[point.kind]),
+  }));
 
   return (
     <div
@@ -74,7 +70,6 @@ function PerformanceChart({ data }) {
         >
           <PolarGrid radialLines={false} stroke="#FFFFFF" strokeOpacity={0.2} />
 
-          {/* Labels */}
           <PolarAngleAxis
             dataKey="kind"
             tick={{
@@ -101,7 +96,7 @@ PerformanceChart.propTypes = {
         kind: PropTypes.number.isRequired,
       }),
     ).isRequired,
-  }).isRequired,
+  }), // ← Pas de .isRequired ici
 };
 
 export default PerformanceChart;

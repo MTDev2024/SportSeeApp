@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import ActivityChart from "../components/Charts/ActivityChart";
-// import { USER_ACTIVITY } from "../data/mockData";
 import Greeting from "../components/Greeting";
 import KeyDataCard from "../components/UI/KeyDataCard";
 import caloriesIcon from "../assets/energy.svg";
@@ -8,8 +7,6 @@ import proteinIcon from "../assets/chicken.svg";
 import glucidIcon from "../assets/apple.svg";
 import lipidIcon from "../assets/cheeseburger.svg";
 import AverageSessionsChart from "../components/Charts/AverageSessionsChart";
-// import { USER_AVERAGE_SESSIONS } from "../data/mockData";
-// import { USER_PERFORMANCE } from "../data/mockData";
 import PerformanceChart from "../components/Charts/PerformanceChart";
 import ScoreChart from "../components/Charts/ScoreChart";
 import { useState, useEffect } from "react";
@@ -21,9 +18,9 @@ import {
 } from "../services/api";
 
 /**
- * Page Profil - Affiche les données de l'utilisateur
- * Récupère l'ID utilisateur depuis l'URL et affiche ses informations
- * Si l'utilisateur n'existe pas, affiche un message d'erreur
+ * Page de profil utilisateur avec dashboard sportif.
+ * Affiche 4 graphiques Recharts et les données clés (calories, protéines, etc.)
+ * Affiche un message d'erreur si l'utilisateur n'existe pas
  */
 
 function Profil() {
@@ -68,9 +65,6 @@ function Profil() {
   const proteinCount = `${user.keyData.proteinCount.toLocaleString()}g`;
   const carbohydrateCount = `${user.keyData.carbohydrateCount.toLocaleString()}g`;
   const lipidCount = `${user.keyData.lipidCount.toLocaleString()}g`;
-  // const activityData = USER_ACTIVITY.find((a) => a.userId === Number(id));
-  // const sessionsData = USER_AVERAGE_SESSIONS.find((s) => s.userId === Number(id),);
-  // const performanceData = USER_PERFORMANCE.find((p) => p.userId === Number(id));
 
   return (
     <div className="py-12 px-6">
@@ -78,7 +72,6 @@ function Profil() {
 
       {/* Container centré + largeur max */}
       <div className="max-w-[1125px] w-full mx-auto mt-12 ">
-        {/* KeyDataCards - En grille 2x2 sur petit écran uniquement */}
         <div className="grid grid-cols-2 gap-4 lg:hidden mb-6">
           <KeyDataCard
             icon={caloriesIcon}
@@ -107,13 +100,13 @@ function Profil() {
         </div>
 
         {/* Layout principal */}
-        <div className="flex gap-8 border border-blue-600">
+        <div className="flex gap-8">
           {/* Zone graphiques */}
-          <div className="flex-1 flex flex-col gap-6 border border-green-600">
+          <div className="flex-1 flex flex-col gap-6">
             {/* Activité quotidienne */}
             <ActivityChart data={activityData?.sessions} />
 
-            {/* 3 graphiques du bas */}
+            {/* 3 graphiques carrés*/}
             <div className="flex gap-6 px-2">
               <div className="flex-1 aspect-square">
                 <AverageSessionsChart data={averageSessions?.sessions} />
@@ -127,7 +120,6 @@ function Profil() {
             </div>
           </div>
 
-          {/* Zone cards - Colonne sur grand écran uniquement */}
           <div className="hidden lg:flex flex-col gap-9 w-64">
             <KeyDataCard
               icon={caloriesIcon}

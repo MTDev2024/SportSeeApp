@@ -11,16 +11,20 @@ import {
 import CustomTooltip from "./CustomTooltip";
 
 /**
- * Composant ActivityChart - Graphique d'activité quotidienne
- * Affiche le poids (kg) et les calories brûlées par jour sous forme de barres
- *
+ * Graphique d'activité quotidienne (poids et calories)
  * @param {Object} props
- * @param {Array} props.data - Tableau sessions activité
- * @param {string} props.data[].day - Date (YYYY-MM-DD)
- * @param {number} props.data[].kilogram
- * @param {number} props.data[].calories
+ * @param {Array} props.data - Sessions avec kg et calories
  */
+
 function ActivityChart({ data }) {
+  if (!data || data.length === 0) {
+    return (
+      <div className="bg-[#FBFBFB] p-6 rounded-lg h-[330px] flex items-center justify-center">
+        <p className="text-gray-400">Chargement des données d'activité...</p>
+      </div>
+    );
+  }
+
   return (
     <div
       className="bg-[#FBFBFB] p-6 rounded-lg h-[330px]"
@@ -146,7 +150,7 @@ ActivityChart.propTypes = {
       kilogram: PropTypes.number.isRequired,
       calories: PropTypes.number.isRequired,
     }),
-  ).isRequired,
+  ),
 };
 
 export default ActivityChart;
