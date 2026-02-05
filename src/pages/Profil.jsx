@@ -55,7 +55,9 @@ function Profil() {
       .catch((err) => setError(err.message));
   }, [id]);
 
-  if (loading) return <div>Chargement...</div>;
+  if (loading || !activityData || !averageSessions || !performanceData) {
+    return <div className="p-6">Chargement...</div>;
+  }
   if (error) return <div>Erreur : {error}</div>;
   if (!user) return <div>Pas de données</div>;
 
@@ -67,7 +69,7 @@ function Profil() {
   const lipidCount = `${user.keyData.lipidCount.toLocaleString()}g`;
 
   return (
-    <div className="py-12 px-6">
+    <div className="pt-16 pl-28">
       <Greeting firstName={user.userInfos.firstName} />
 
       {/* Container centré + largeur max */}

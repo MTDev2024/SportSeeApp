@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 /**
  * Message de bienvenue personnalisé avec le prénom de l'utilisateur
  * @param {Object} props
- * @param {string} props.firstName - Prénom de l'utilisateur
+ * @param {string} props.firstName
  */
 
 function Greeting({ firstName }) {

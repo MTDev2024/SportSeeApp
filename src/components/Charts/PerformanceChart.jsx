@@ -96,7 +96,7 @@ PerformanceChart.propTypes = {
         kind: PropTypes.number.isRequired,
       }),
     ).isRequired,
-  }), // ← Pas de .isRequired ici
+  }),
 };
 
 export default PerformanceChart;
