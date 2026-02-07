@@ -61,16 +61,16 @@ function Profil() {
   if (error) return <div>Erreur : {error}</div>;
   if (!user) return <div>Pas de données</div>;
 
-  const userScore = user.todayScore || user.score;
+  const userScore = user.score;
 
-  const calorieCount = `${user.keyData.calorieCount.toLocaleString()}kCal`;
-  const proteinCount = `${user.keyData.proteinCount.toLocaleString()}g`;
-  const carbohydrateCount = `${user.keyData.carbohydrateCount.toLocaleString()}g`;
-  const lipidCount = `${user.keyData.lipidCount.toLocaleString()}g`;
+  const calorieCount = user.getFormattedCalories();
+  const proteinCount = user.getFormattedProteins();
+  const carbohydrateCount = user.getFormattedCarbs();
+  const lipidCount = user.getFormattedLipids();
 
   return (
     <div className="pt-16 pl-28">
-      <Greeting firstName={user.userInfos.firstName} />
+      <Greeting firstName={user.firstName} />
 
       {/* Container centré + largeur max */}
       <div className="max-w-[1125px] w-full mx-auto mt-12 ">

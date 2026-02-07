@@ -10,7 +10,7 @@ import {
 /**
  * Radar chart des performances par type d'activité
  * @param {Object} props
- * @param {Object} props.data - Données de performance avec kind et valeurs
+ * @param {Object} props.data - Instance de Performance avec données déjà formatées
  */
 function PerformanceChart({ data }) {
   // Gestion du cas pas de données
@@ -22,29 +22,9 @@ function PerformanceChart({ data }) {
     );
   }
 
-  /**
-   * Traduit les labels anglais en français
-   * @param {string} value - Label anglais
-   * @returns {string} Label français
-   */
-  const formatLabel = (value) => {
-    if (value === "cardio") return "Cardio";
-    if (value === "energy") return "Energie";
-    if (value === "endurance") return "Endurance";
-    if (value === "strength") return "Force";
-    if (value === "speed") return "Vitesse";
-    if (value === "intensity") return "Intensité";
-    return value;
-  };
-
-  // Transformation des données :
-  // 1. [...data.data] → Copie du tableau (sans modifier l'original)
-  // 2. .reverse() → Inverse l'ordre
-  // 3. .map() → Transforme chaque point
-  const formattedData = [...data.data].reverse().map((point) => ({
-    value: point.value,
-    kind: formatLabel(data.kind[point.kind]),
-  }));
+  // Les données sont traduites par la classe Performance
+  // Inversion de l'ordre pour l'affichage
+  const formattedData = [...data.data].reverse();
 
   return (
     <div
@@ -89,11 +69,10 @@ function PerformanceChart({ data }) {
 PerformanceChart.propTypes = {
   data: PropTypes.shape({
     userId: PropTypes.number.isRequired,
-    kind: PropTypes.object.isRequired,
     data: PropTypes.arrayOf(
       PropTypes.shape({
         value: PropTypes.number.isRequired,
-        kind: PropTypes.number.isRequired,
+        kind: PropTypes.string.isRequired,
       }),
     ).isRequired,
   }),
