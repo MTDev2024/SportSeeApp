@@ -82,20 +82,17 @@ Le projet met l'accent sur la visualisation de données avec Recharts et l'inté
 ## Installation
 
 ### 1. Cloner le repository
-
 ```bash
 git clone https://github.com/MTDev2024/SportSeeApp.git
 cd SportSeeApp
 ```
 
 ### 2. Installer les dépendances
-
 ```bash
 npm install
 ```
 
 ou avec Yarn :
-
 ```bash
 yarn install
 ```
@@ -105,7 +102,6 @@ yarn install
 ## Lancement du projet
 
 ### Mode développement
-
 ```bash
 npm run dev
 ```
@@ -113,7 +109,6 @@ npm run dev
 L'application sera accessible sur **http://localhost:5173**
 
 ### Build de production
-
 ```bash
 npm run build
 ```
@@ -121,7 +116,6 @@ npm run build
 Les fichiers optimisés seront générés dans le dossier `dist/`
 
 ### Prévisualiser le build
-
 ```bash
 npm run preview
 ```
@@ -129,27 +123,27 @@ npm run preview
 ---
 
 ## Structure du projet
-
 ```
 SportSee/
-├── public/               # Fichiers publics statiques
+├── public/               
 ├── src/
-│   ├── assets/           # Images et icônes
-│   ├── components/       # Composants réutilisables
+│   ├── assets/           # Images / icônes
+│   ├── components/       # Composants
 │   │   ├── Layout/       # Header, Sidebar, Layout
 │   │   ├── Charts/       # Graphiques Recharts
-│   │   └── UI/           # KeyDataCard, Greeting
-│   ├── data/             # Données mockées
+│   │   ├── UI/           # KeyDataCard
+│   │   └── Greeting.jsx  # Message de bienvenue personnalisé
+│   ├── data/             # Mock données 
+│   ├── models/           # Classes de modélisation (User, Activity, Performance, AverageSessions)
 │   ├── pages/            # Pages (Home, Profil, Error)
 │   ├── services/         # Appels API
-│   ├── utils/            # Fonctions utilitaires
-│   ├── App.jsx           # Composant racine avec routes
+│   ├── App.jsx           # Composant racine / routes
 │   ├── main.jsx          # Point d'entrée de l'application
 │   └── index.css         # Styles globaux Tailwind
-├── .eslintrc.cjs         # Configuration ESLint
-├── tailwind.config.js    # Configuration Tailwind CSS
-├── vite.config.js        # Configuration Vite
-└── package.json          # Dépendances et scripts
+├── .eslintrc.cjs         # Configuration 
+├── tailwind.config.js    # Configuration 
+├── vite.config.js        # Configuration 
+└── package.json          # Dépendances / scripts
 ```
 
 ---
@@ -175,7 +169,6 @@ Le projet utilise un backend Node.js fourni par OpenClassrooms.
 - **User ID 18** - Cecilia Ratorez
 
 ### Lancer le backend
-
 ```bash
 # Cloner le repo backend
 git clone https://github.com/OpenClassrooms-Student-Center/SportSee.git
@@ -218,7 +211,6 @@ Le backend sera accessible sur **http://localhost:3000**
 
 ### PropTypes
 Tous les composants utilisent **PropTypes** pour la validation des props :
-
 ```jsx
 ComponentName.propTypes = {
   propName: PropTypes.string.isRequired,
@@ -227,7 +219,6 @@ ComponentName.propTypes = {
 
 ### JSDoc
 Les fonctions importantes sont documentées avec **JSDoc** :
-
 ```jsx
 /**
  * Récupère les données principales de l'utilisateur
@@ -250,10 +241,17 @@ export async function getUserData(userId) { ... }
 ### Gestion des données
 - **Mocks** : Données mockées pour le développement initial
 - **API** : Intégration de l'API backend fournie
-- **Standardisation** : Normalisation des données API avant utilisation
+- **Classes de modélisation** : Transformation et normalisation des données API
+  - `User.js` : Normalise `todayScore`/`score`, méthodes de formatage
+  - `Performance.js` : Traduit les labels en français
+  - `Activity.js` & `AverageSessions.js` : Structurent les données
+- **Standardisation** : Les composants reçoivent des instances de classes au lieu de données brutes
 
 ### Architecture des composants
-- **Séparation des responsabilités** : UI / Logique / Services
+- **Séparation des responsabilités** : 
+  - **Modèles** (classes) : Normalisation et formatage des données
+  - **Services** : Appels API et instanciation des classes
+  - **Composants** : Affichage uniquement
 - **Composants réutilisables** : KeyDataCard, graphiques modulaires
 - **Props explicites** : Clarté du code et maintenance facilitée
 
@@ -282,7 +280,6 @@ L'application gère les cas suivants :
 ## Auteur
 
 [GitHub](https://github.com/MTDev2024)
-Réalisé dans le cadre de ma formation - Développeur d'application JavaScript React.
 
 ---
 
